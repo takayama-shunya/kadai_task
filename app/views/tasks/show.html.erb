@@ -1,0 +1,12 @@
+<h3>タスク詳細</h3>
+<div class="task-show">
+  <div class="task-title">
+    【タイトル】<br><%= @task.title %>
+  </div>
+  <div class="task-content">
+    【内容】<br><%= @task.title %>
+  </div>
+</div>
+<%= button_to tasks_path, method: :get, class:"btn btn-" do %>
+  <span>タスク一覧へ</span>
+<% end %>

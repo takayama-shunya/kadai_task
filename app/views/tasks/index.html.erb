@@ -1,0 +1,39 @@
+<h3>タスク一覧</h3>
+<div class="container">
+  <div class="low">
+    <% @tasks.each do |task| %>
+      <div class="col-md-6">
+        <table>
+          <tr>
+            <td><%= task.title %></td>
+          </tr>
+          <tr>
+            <td><%= task.content %></td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>
+                  <%= button_to task_path(task.id), method: :get, calss:"btn btn-" do %>
+                    <span>詳細</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= button_to edit_task_path(task.id), method: :get, calss:"btn btn-" do %>
+                    <span>編集</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= button_to task_path(task.id), method: :delete, calss:"btn btn-", 
+                      data: { confirm: '本当に削除して良いですか？' } do %>
+                    <span>削除</span>
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
