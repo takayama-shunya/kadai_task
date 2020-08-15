@@ -1,0 +1,20 @@
+<%= form_with(model:@task, url:choose_new_or_edit, local:true) do |form| %>
+  <% if @task.errors.any? %>
+    <div class="error_explanation">
+      <h3><%= @task.errors.count %>件のエラーがあります</h3>
+      <ul>
+      <%= @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="task_form">
+    <%= form.label :title %><br>
+    <%= form.text_field :title, size:"40" %><br>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, size:"40x10" %><br>
+    <%= form.submit "作成", class:"btn btn-" %>
+  </div>
+
+<% end %>
