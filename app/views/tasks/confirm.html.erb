@@ -1,12 +1,12 @@
-<h3>以下の内容で送信して良いですか？</h3>
+<h3><%= t('view.can_i_send_the_following_contents?') %></h3>
 <%= form_with(model:@task, url:tasks_path, local:true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <div class="task-title">
-    【タイトル】<br><%= @task.title %>
+    <%= t('view.title') %><br><%= @task.title %>
   </div>
   <div class="task-content">
-    【内容】<br><%= @task.content %>
+    <%= t('view.content') %><br><%= @task.content %>
   </div>
   <ul>
     <li><%= form.submit "作成", class:"btn btn-" %></li>
