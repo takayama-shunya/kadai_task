@@ -1,14 +1,23 @@
 <h3><%= t('view.task_list') %></h3>
 <div class="container">
   <div class="low">
-    <% @tasks.each do |task| %>
+    <table>
       <div class="col-md-6">
-        <table>
+        <thead>
           <tr>
-            <td><%= task.title %></td>
+            <th class="title"><%= t('view.title') %></th>
+            <th class="content"><%= t('view.content') %></th>
+            <th class="create-time"><%= t('view.create_time') %></th>
           </tr>
-          <tr>
-            <td><%= task.content %></td>
+        </thead>
+      </div>
+      <% @tasks.each do |task| %>
+      <div class="col-md-6">
+        <tbody>
+          <tr id="task-test">
+            <td class="title"><%= task.title %></td>
+            <td class="content"><%= task.content %></td>
+            <td class="create-time"><%= l task.created_at, format: :short %></td>
           </tr>
           <tr>
             <td>
@@ -32,9 +41,10 @@
               </ul>
             </td>
           </tr>
-        </table>
+        </tbody>
       </div>
-    <% end %>
+      <% end %>
+    </table>
   </div>
 </div>
 <%= button_to new_task_path, method: :get, class:"btn btn-" do %>
