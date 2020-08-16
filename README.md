@@ -57,4 +57,3 @@ herokuデプロイ手順<br>
  > uglifier (>= 1.3.0)  
  > web-console (>= 3.3.0)  
  > webdrivers  
-
