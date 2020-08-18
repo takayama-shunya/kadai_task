@@ -3,8 +3,8 @@
     <div class="error_explanation">
       <h3><%= @task.errors.count %><%= t('view.there_are_errors') %></h3>
       <ul>
-      <%= @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @task.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
       <% end %>
       </ul>
     </div>

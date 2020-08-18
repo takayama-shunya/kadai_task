@@ -27,3 +27,9 @@ table, td, th {
 .create-time {
   width: 10%;
 }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
