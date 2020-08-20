@@ -7,7 +7,7 @@ li {
   float: left;
 }
 
-table {
+table, tr {
   width: 100%;
 }
 
@@ -17,19 +17,19 @@ table, td, th {
 }
 
 .tile {
-  width: 5%;
+  width: 10%;
 }
 
 .content {
   width: 40%;
 }
 
-.create-time {
+.create-time, .end-time {
   width: 10%;
 }
 
 .field_with_errors {
-  padding: 2px;
+  padding: 1px;
   background-color: red;
   display: table;
 }

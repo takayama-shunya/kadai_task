@@ -6,6 +6,9 @@
   <div class="task-content">
     <%= t('view.content')  %><br><%= @task.title %>
   </div>
+  <div class="task-end-time">
+    <%= t('view.end_time') %><br><%= @task.expired %>
+  </div>
 </div>
 <%= button_to tasks_path, method: :get, class:"btn btn-" do %>
   <span><%= t('view.task_list') %></span>

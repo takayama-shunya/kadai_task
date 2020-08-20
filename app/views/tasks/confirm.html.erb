@@ -2,11 +2,15 @@
 <%= form_with(model:@task, url:tasks_path, local:true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :expired %>
   <div class="task-title">
     <%= t('view.title') %><br><%= @task.title %>
   </div>
   <div class="task-content">
     <%= t('view.content') %><br><%= @task.content %>
+  </div>
+  <div class="task-end-time">
+    <%= t('view.end_time') %><br><%= @task.expired %>
   </div>
   <ul>
     <li><%= form.submit "作成", class:"btn btn-" %></li>
