@@ -11,7 +11,10 @@
             <th class="title"><%= t('view.title') %></th>
             <th class="content"><%= t('view.content') %></th>
             <th class="create-time"><%= t('view.create_time') %></th>
-            <th class="end-time"><%= t('view.end_time') %></th>
+            <th class="end-time"><%= t('view.end_time') %>
+              <%= link_to "▼", tasks_path(sort_desc: "true", name: :"expired"), class:"select-order" %>
+              <%= link_to "▲", tasks_path(sort_asc: "true", name: :"expired"), class:"select-order" %>
+            </th>
           </tr>
         </thead>
       </div>

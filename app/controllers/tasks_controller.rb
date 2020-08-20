@@ -1,10 +1,13 @@
 class TasksController < ApplicationController
 
-  before_action :set_task, only: [:edit, :show, :destroy, :update] 
+  before_action :set_task, only: %i[ edit show destroy update]
+  before_action :set_clumn_name, only: %i[ index ] 
 
   def index
-    if params[:sort_expired]
-      @tasks = Task.all.order(expired: :desc)
+    if params[:sort_desc]
+      @tasks = Task.all.order("#{set_clumn_name}": :desc)
+    elsif params[:sort_asc]
+      @tasks = Task.all.order("#{set_clumn_name}": :asc)
     else
       @tasks = Task.all.order(created_at: :desc)
     end
@@ -59,6 +62,10 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :content, :expired)
+  end
+
+  def set_clumn_name
+    clumn_name = params[:name]
   end
 
 end

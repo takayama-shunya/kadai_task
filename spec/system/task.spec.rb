@@ -20,22 +20,28 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'task_1'
       end
     end
+    let!(:second_task) { FactoryBot.create(:second_task, title: 'task_2') }
+    before do
+      visit tasks_path
+    end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
-        second_task = FactoryBot.create(:second_task, title: 'task_2')
-        visit tasks_path
         task_list = all('#task-test')
         expect(task_list[0]).to have_content 'task_2'
       end
     end
     context 'タスクが終了期限の降順に並んでいる場合' do
-      it '終了期限が先のタスクが一番上に表示される' do
-        second_task = FactoryBot.create(:second_task, title: 'task_2')
-        visit tasks_path
-        click_on "終了期限でソートする"
+      it '終了期限が遠いタスクが一番上に表示される' do
+        click_on "▼"
         task_list = all('#task-test')
         expect(task_list[0]).to have_content 'task_2'
       end
+      it '終了期限が近いタスクが一番上に表示される' do
+        click_on "▲"
+        task_list = all('#task-test')
+        expect(task_list[0]).to have_content 'task_1'
+      end
+
     end
   end
   describe '詳細表示機能' do
