@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      task: タスク
+      user: ユーザー
+      label: ラベル
+    attributes:
+      task:
+        title: タイトル
+        content: 内容
+      user:
+      label:

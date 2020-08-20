@@ -1,3 +1,35 @@
-// Place all the styles related to the tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  width: 100%;
+}
+
+li {
+  list-style: none;
+  float: left;
+}
+
+table {
+  width: 100%;
+}
+
+table, td, th {
+  border-collapse: collapse;
+  border: solid 0.02rem rgba(226, 223, 223, 0.856);
+}
+
+.tile {
+  width: 5%;
+}
+
+.content {
+  width: 40%;
+}
+
+.create-time {
+  width: 10%;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
