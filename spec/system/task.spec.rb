@@ -28,6 +28,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[0]).to have_content 'task_2'
       end
     end
+    context 'タスクが終了期限の降順に並んでいる場合' do
+      it '終了期限が先のタスクが一番上に表示される' do
+        second_task = FactoryBot.create(:second_task, title: 'task_2')
+        visit tasks_path
+        click_on "終了期限でソートする"
+        task_list = all('#task-test')
+        expect(task_list[0]).to have_content 'task_2'
+      end
+    end
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
