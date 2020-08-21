@@ -9,6 +9,9 @@
   <div class="task-end-time">
     <%= t('view.end_time') %><br><%= @task.expired %>
   </div>
+  <div class="task-status">
+    <%= t('view.status') %><br><%= @task.status %>
+  </div>
 </div>
 <%= button_to tasks_path, method: :get, class:"btn btn-" do %>
   <span><%= t('view.task_list') %></span>

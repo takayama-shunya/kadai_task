@@ -1,6 +1,5 @@
 <h3><%= t('view.task_list') %></h3>
 <div calss="option-erea">
-  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 </div>
 <div class="container">
   <div class="low">
@@ -15,6 +14,7 @@
               <%= link_to "▼", tasks_path(sort_desc: "true", name: :"expired"), class:"select-order" %>
               <%= link_to "▲", tasks_path(sort_asc: "true", name: :"expired"), class:"select-order" %>
             </th>
+            <th class="status"><%= t('view.status') %></th>
           </tr>
         </thead>
       </div>
@@ -26,8 +26,7 @@
             <td class="content"><%= task.content %></td>
             <td class="create-time"><%= l task.created_at, format: :short %></td>
             <td class="end-time"><%= l task.expired, format: :short %></td>
-          </tr>
-          <tr>
+            <td class="status"><%= task.status %></td>
             <td>
               <ul>
                 <li>

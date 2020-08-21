@@ -11,6 +11,7 @@
  > content:text<br>
  > priority:string<br>
  > status:string<br>
+ > expired:date<br>
 
  ・labe table
  > name:string

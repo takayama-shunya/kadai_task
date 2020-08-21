@@ -16,6 +16,8 @@
     <%= form.text_area :content, size:"40x10" %><br>
     <%= form.label :expired %><br>
     <%= form.date_field :expired %><br>
+    <%= form.label :status %><br>
+    <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %><br>
     <%= form.submit "作成", class:"btn btn-" %>
   </div>
 

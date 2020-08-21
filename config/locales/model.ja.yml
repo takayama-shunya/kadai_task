@@ -9,5 +9,6 @@ ja:
         title: タイトル
         content: 内容
         expired: 終了期限
+        status: ステータス
       user:
       label:

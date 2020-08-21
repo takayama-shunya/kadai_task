@@ -3,6 +3,7 @@
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :expired %>
+  <%= form.hidden_field :status %>
   <div class="task-title">
     <%= t('view.title') %><br><%= @task.title %>
   </div>
@@ -11,6 +12,9 @@
   </div>
   <div class="task-end-time">
     <%= t('view.end_time') %><br><%= @task.expired %>
+  </div>
+  <div class="task-status">
+    <%= t('view.status') %><br><%= @task.status %>
   </div>
   <ul>
     <li><%= form.submit "作成", class:"btn btn-" %></li>
