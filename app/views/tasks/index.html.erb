@@ -1,5 +1,13 @@
 <h3><%= t('view.task_list') %></h3>
-<div calss="option-erea">
+<div calss="search-erea">
+  <%= form_with(scope: :search, url: tasks_path, method: :get, local: true) do |form| %>
+    <%= form.label :title %>
+    <%= form.text_field :title, value: @search_params[:title] %>
+    <%= form.label :status %>
+    <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]],
+                    value: @search_params[:status], include_blank: '選択してください' %>
+    <%= form.submit "検索", class:"btn btn-" %>
+  <% end %>
 </div>
 <div class="container">
   <div class="low">
