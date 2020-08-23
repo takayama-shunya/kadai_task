@@ -6,9 +6,13 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "タイトル", with: "task_test"
         fill_in "内容", with: "task_test"
+        fill_in "終了期限", with: Time.current.next_week
+        select "未着手", from: "ステータス"
         click_on "作成"
         click_on "作成"
         expect(page).to have_content 'task'
+        expect(page).to have_content '未着手'
+        #expect(page).to have_select('【ステータス】', selected: '未着手')
       end
     end
   end
@@ -52,5 +56,34 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'task_2'
        end
      end
+  end
+  describe '検索機能' do
+    before do
+      FactoryBot.create(:task, title: "task")
+      FactoryBot.create(:second_task, title: "search")
+      visit tasks_path
+    end
+    context 'タイトルであいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        fill_in "タイトル", with: "a"
+        click_on "検索"
+        expect(page).to have_content 'task'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        select "未着手", from: "ステータス"
+        click_on "検索"
+        expect(page).to have_content 'task'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        fill_in "タイトル", with: "a"
+        select "着手中", from: "ステータス"
+        click_on "検索"
+        expect(page).to have_content 'search'
+      end
+    end
   end
 end

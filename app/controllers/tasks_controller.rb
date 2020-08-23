@@ -7,6 +7,11 @@ class TasksController < ApplicationController
     if params[:search]
       @tasks = Task.search(@search_params)
       redirect_to tasks_path, notice: "検索タスクはありません" if @tasks.blank?
+      if params[:sort_desc]
+        @tasks = Task.search(@search_params).all.order("#{set_clumn_name}": :desc)
+      elsif params[:sort_asc]
+        @tasks = Task.search(@search_params).all.order("#{set_clumn_name}": :asc)
+      end
     elsif params[:sort_desc]
       @tasks = Task.all.order("#{set_clumn_name}": :desc)
     elsif params[:sort_asc]
@@ -74,5 +79,6 @@ class TasksController < ApplicationController
   def search_params
     params.fetch(:search, {}).permit(:title, :status)
   end
+
 
 end
