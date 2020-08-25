@@ -18,6 +18,8 @@
     <%= form.date_field :expired %><br>
     <%= form.label :status %><br>
     <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %><br>
+    <%= form.label :priority %><br>
+    <%= form.select :priority, Task.priorities.keys.map {|k| [k, k]} %><br>
     <%= form.submit "作成", class:"btn btn-" %>
   </div>
 

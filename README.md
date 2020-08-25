@@ -13,9 +13,6 @@
  > status:string<br>
  > expired:date<br>
 
- ・labe table
- > name:string
-
 
 herokuデプロイ手順<br>
 ・アカウント作成（作成していない場合）<br>

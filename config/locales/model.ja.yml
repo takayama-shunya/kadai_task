@@ -10,5 +10,5 @@ ja:
         content: 内容
         expired: 終了期限
         status: ステータス
+        priority: 優先度
       user:
-      label:

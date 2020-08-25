@@ -12,6 +12,9 @@
   <div class="task-status">
     <%= t('view.status') %><br><%= @task.status %>
   </div>
+  <div class="task-priority">
+    <%= t('view.priority') %><br><%= @task.priority %>
+  </div>
 </div>
 <%= button_to tasks_path, method: :get, class:"btn btn-" do %>
   <span><%= t('view.task_list') %></span>

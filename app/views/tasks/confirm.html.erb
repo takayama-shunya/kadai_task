@@ -4,6 +4,7 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :expired %>
   <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
   <div class="task-title">
     <%= t('view.title') %><br><%= @task.title %>
   </div>
@@ -16,9 +17,13 @@
   <div class="task-status">
     <%= t('view.status') %><br><%= @task.status %>
   </div>
-  <ul>
-    <li><%= form.submit "作成", class:"btn btn-" %></li>
-    <li><%= form.submit "戻る", name: 'back', class:"btn btn-" %></li>
-  </ul>
-
+  <div class="task-priority">
+    <%= t('view.priority') %><br><%= @task.priority %>
+  </div>
+  <div class="submit">
+    <ul>
+      <li><%= form.submit "作成", class:"btn btn-" %></li>
+      <li><%= form.submit "戻る", name: 'back', class:"btn btn-" %></li>
+    </ul>
+  </div>
 <% end %>
