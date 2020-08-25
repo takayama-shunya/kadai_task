@@ -58,9 +58,9 @@ RSpec.describe 'タスク管理機能', type: :system do
      end
   end
   describe '検索機能' do
+    let!(:task) { FactoryBot.create(:task, title: "task") }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "search") }
     before do
-      FactoryBot.create(:task, title: "task")
-      FactoryBot.create(:second_task, title: "search")
       visit tasks_path
     end
     context 'タイトルであいまい検索をした場合' do
