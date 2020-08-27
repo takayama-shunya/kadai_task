@@ -1,0 +1,96 @@
+/*
+ */
+ @import "bootstrap";
+
+ body {
+  font-family: sans-serif;
+  width: 100%;
+  padding: 10px 10px;
+}
+
+li {
+  list-style: none;
+  float: left;
+}
+
+table {
+  width: 100%;
+}
+
+table, td, th {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+
+.field_with_errors {
+  padding: 1px;
+  background-color: red;
+  display: table;
+}
+
+.select-order {
+  text-decoration: none;
+}
+
+.search {
+  text-align: left;
+}
+
+.btn-outline-dark {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-outline-dark:focus {
+  outline: none;
+}
+
+.create-btn {
+  padding: 20px 0 20px 50px;
+}
+
+.end-time {
+  width: 15%;
+}
+
+.priority {
+  width: 14%;
+}
+
+.status {
+  width: 13%;
+}
+
+.create-time {
+  width: 12%;
+}
+
+.tasks-btn {
+  width: 21%;
+}
+
+td ul {
+  padding: 0;
+}
+
+.task-btn {
+  padding: 0.25rem;
+}
+
+.text-position {
+  text-align: right;
+}
+
+.form-group {
+  padding: 1rem 1rem 2rem 1rem;
+}
+
+.form-label {
+  padding: 0.25rem;
+}
+
+.btn-secondary {
+  font-size: 0.8rem;
+}

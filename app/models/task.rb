@@ -8,6 +8,8 @@ class Task < ApplicationRecord
 
   enum priority: { 低: 0, 中: 1, 高: 2 }
 
+  paginates_per 10
+
   scope :search, -> (search_params) do
     return if search_params.blank?
 
