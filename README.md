@@ -11,9 +11,7 @@
  > content:text<br>
  > priority:string<br>
  > status:string<br>
-
- ・labe table
- > name:string
+ > expired:date<br>
 
 
 herokuデプロイ手順<br>

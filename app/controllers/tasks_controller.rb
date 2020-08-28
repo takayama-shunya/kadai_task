@@ -1,9 +1,19 @@
 class TasksController < ApplicationController
 
-  before_action :set_task, only: [:edit, :show, :destroy, :update] 
+  before_action :set_task, only: %i[ edit show destroy update]
 
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @search_params = search_params
+    if params[:search]
+      @tasks = Task.search(@search_params).page(params[:page])
+      redirect_to tasks_path, notice: "検索タスクはありません" if @tasks.blank?
+    elsif params[:sort_desc]
+      @tasks = Task.all.order("#{set_clumn_name}": :desc).page(params[:page])
+    elsif params[:sort_asc]
+      @tasks = Task.all.order("#{set_clumn_name}": :asc).page(params[:page])
+    else
+      @tasks = Task.all.order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show
@@ -54,7 +64,16 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :expired, :status, :priority)
   end
+
+  def set_clumn_name
+    clumn_name = params[:name]
+  end
+
+  def search_params
+    params.fetch(:search, {}).permit(:title, :status)
+  end
+
 
 end

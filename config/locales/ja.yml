@@ -217,4 +217,7 @@ ja:
     details: 詳細
     delete: 削除
     create_time: 【作成日時】
+    end_time: 【終了期限】
+    status: 【ステータス】
+    priority: 【優先度】
     

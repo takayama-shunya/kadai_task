@@ -2,15 +2,28 @@
 <%= form_with(model:@task, url:tasks_path, local:true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-  <div class="task-title">
+  <%= form.hidden_field :expired %>
+  <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
+  <div class="task-show">
     <%= t('view.title') %><br><%= @task.title %>
   </div>
-  <div class="task-content">
+  <div class="task-show">
     <%= t('view.content') %><br><%= @task.content %>
   </div>
-  <ul>
-    <li><%= form.submit "作成", class:"btn btn-" %></li>
-    <li><%= form.submit "戻る", name: 'back', class:"btn btn-" %></li>
-  </ul>
-
+  <div class="task-show">
+    <%= t('view.end_time') %><br><%= @task.expired %>
+  </div>
+  <div class="task-show">
+    <%= t('view.status') %><br><%= @task.status %>
+  </div>
+  <div class="task-show">
+    <%= t('view.priority') %><br><%= @task.priority %>
+  </div>
+  <div class="task_show">
+    <ul>
+      <li class="confirm-submit"><%= form.submit "作成", class:"btn btn-primary" %></li>
+      <li class="confirm-submit"><%= form.submit "戻る", name: 'back', class:"btn btn-light" %></li>
+    </ul>
+  </div>
 <% end %>
