@@ -1,21 +1,23 @@
 <h3><%= t('view.task_details') %></h3>
 <div class="task-show">
-  <div class="task-title">
+  <div class="task-show">
     <%= t('view.title') %><br><%= @task.title %>
   </div>
-  <div class="task-content">
+  <div class="task-show">
     <%= t('view.content')  %><br><%= @task.title %>
   </div>
-  <div class="task-end-time">
+  <div class="task-show">
     <%= t('view.end_time') %><br><%= @task.expired %>
   </div>
-  <div class="task-status">
+  <div class="task-show">
     <%= t('view.status') %><br><%= @task.status %>
   </div>
-  <div class="task-priority">
+  <div class="task-show">
     <%= t('view.priority') %><br><%= @task.priority %>
   </div>
+  <div class="task-show index-link">
+    <%= button_to tasks_path, method: :get, class:"btn btn-outline-dark" do %>
+      <h4><%= t('view.task_list') %>へ</h4>
+    <% end %>
+  </div>
 </div>
-<%= button_to tasks_path, method: :get, class:"btn btn-outline-dark" do %>
-  <span><%= t('view.task_list') %></span>
-<% end %>

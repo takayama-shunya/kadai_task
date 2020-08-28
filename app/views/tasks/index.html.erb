@@ -17,7 +17,7 @@
         <div class="form-group">
           <%= form.label :status, 'ステータス', class:"form-label" %>
           <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]],
-                          value: @search_params[:status], include_blank: true, class:"form-control form-control-lg" %>
+                          selected: @search_params[:status], include_blank: true, class:"form-control" %>
         </div>
         <div class="form-group">
           <%= form.submit "検索", class:"btn btn-secondary" %>
