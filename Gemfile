@@ -16,6 +16,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'bootstrap', '~> 4.5.2'
 gem 'jquery-rails'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
