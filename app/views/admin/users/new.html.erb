@@ -1,0 +1,5 @@
+<h3>ユーザー登録</h3>_
+<div class="nav justify-content-end col-md-8">
+  <%= link_to 'ユーザー一覧', admin_users_path, class:"nav-link" %>
+</div>
+<%= render partial: 'form', locals: { user: @admin_user } %>

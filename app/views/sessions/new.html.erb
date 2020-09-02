@@ -1,0 +1,16 @@
+<div class="login col-md-11">
+  <h3>ログインページ</h3>
+  <%= form_with(scope: :session, url:sessions_path, local: true) do |f| %>
+    <div class="login form-group col-md-11">
+      <%= f.label :email %>
+      <%= f.text_field :email, class:"login form-control col-md-6" %>
+    </div>
+    <div class="login form-group col-md-11">
+      <%= f.label :password %>
+      <%= f.password_field :password, class:"login form-control col-md-6" %>
+    </div>
+    <div class="login form-group col-md-11">
+      <%= f.submit 'ログイン', class:"login btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

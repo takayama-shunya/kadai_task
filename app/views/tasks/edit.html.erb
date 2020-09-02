@@ -1,2 +1,2 @@
 <h3><%= t('view.task_edit') %></h3>
-<%= render 'form' %>
+<%= render partial:'form', locals: { task: @task }%>
