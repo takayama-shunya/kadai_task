@@ -26,6 +26,16 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class:"form-control col-md-6" %>
   </div>
+  <% if logged_in? && current_user.admin %>
+  <div class="form-group">
+    <div class="form-check">
+      <%= f.label :admin, class:"form-check-label" do %>
+        <%= f.check_box :admin, class:"form-check-input" %>
+        <span>管理者権限</span>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
   <div class="form-group">
     <%= f.submit nil, class:"btn btn-primary"  %>
   </div>

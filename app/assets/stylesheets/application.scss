@@ -1,11 +1,16 @@
 /*
  */
  @import "bootstrap";
+ @import url(https://fonts.googleapis.com/css?family=Anton);
 
 body {
   font-family: sans-serif;
   width: 100%;
   padding: 70px 10px 10px 10px;
+}
+
+h3 {
+  font-family: 'Anton', sans-serif;
 }
 
 li {
@@ -138,10 +143,14 @@ td ul {
   width: 10rem;
 }
 
-nav {
-  padding-bottom: 100px;
-}
-
 .collapse, .navbar-collapse {
   text-align: right;
+}
+
+.alert .alert-success {
+  padding: 1rem;
+}
+
+nav a span {
+  padding: 0.5rem;
 }

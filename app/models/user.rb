@@ -9,5 +9,10 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 5 }
 
   has_many :tasks, dependent: :destroy
+  delegate :title, 
+           :content, 
+           :expired,
+           :status, 
+           :priority, to: :user, prefix: true
 
 end

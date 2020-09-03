@@ -5,14 +5,14 @@ class TasksController < ApplicationController
   def index
     @search_params = search_params
     if params[:search]
-      @tasks = Task.search(@search_params).page(params[:page])
+      @tasks = current_user.tasks.search(@search_params).page(params[:page])
       redirect_to tasks_path, notice: "検索タスクはありません" if @tasks.blank?
     elsif params[:sort_desc]
-      @tasks = Task.all.order("#{set_clumn_name}": :desc).page(params[:page])
+      @tasks = current_user.tasks.order("#{set_clumn_name}": :desc).page(params[:page])
     elsif params[:sort_asc]
-      @tasks = Task.all.order("#{set_clumn_name}": :asc).page(params[:page])
+      @tasks = current_user.tasks.order("#{set_clumn_name}": :asc).page(params[:page])
     else
-      @tasks = Task.all.order(created_at: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
     end
   end
 
