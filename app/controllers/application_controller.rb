@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
                                
   helper_method :current_user
   helper_method :logged_in?
+  helper_method :current_user_admin?
 
   before_action :login_required
 
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
 
   def login_required
     redirect_to new_session_path, alert: "ログインして下さい" unless current_user
+  end
+
+  def current_user_admin?
+    current_user.admin == true
   end
 
 end
