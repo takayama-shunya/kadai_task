@@ -21,7 +21,7 @@
         <td><%= l task.created_at, format: :short %></td>
         <td><%= l task.expired, format: :short %></td>
         <td><%= task.status %></td>
-        <td><%= task.priority %></td>
+        <td><%= task[:priority] %></td>
       <tr>
     <% end %>
     </tbody>
