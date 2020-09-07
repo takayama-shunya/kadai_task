@@ -21,13 +21,13 @@ class User < ApplicationRecord
   private
 
   def admin_update_limit
-    if User.where(admin: "true").count == 1 && self.admin == false
+    if User.where(admin: "true").count < 1 && self.admin == false
       throw :abort
     end
   end
 
   def admin_destroy_limit
-    if User.where(admin: "true").count <= 1
+    if User.where(admin: "true").count < 1
       throw :abort
     end
   end

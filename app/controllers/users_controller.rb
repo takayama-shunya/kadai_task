@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   skip_before_action :login_required, only: %i[ new create ]
   before_action :current_user_cannot_create_user, only: %i[ new create ]
   before_action :set_current_user, only: %i[ show edit update ]
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def current_user_cannot_create_user
-    redirect_to tasks_path, alert: "2人目のユーザー作成はできません" unless logged_in? && current_user_admin?
+    redirect_to tasks_path, alert: "2人目のユーザー作成はできません" if logged_in? && current_user.admin == false
   end
 
 end
