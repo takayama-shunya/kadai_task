@@ -121,5 +121,24 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         expect(page).to have_content '削除しました'
       end
     end
+    context '管理ユーザーが1人の時' do
+      it '管理者権限を外せないこと' do
+        visit admin_users_path
+        all('#test-edit')[0].click_link "編集"
+        fill_in "名前", with: "admin_user"
+        fill_in "アドレス", with: "admin@icloud.com"
+        fill_in "パスワード", with: "admin"
+        fill_in "パスワード（確認）", with: "admin"
+        uncheck "管理者権限" 
+        click_on "更新"
+        expect(page).to have_content '管理者ユーザーを0人することはできません'
+      end
+      it '管理者権限所有者を削除できないこと' do
+        visit admin_users_path
+        all('#test-destroy')[0].click_link "削除"
+        expect(page.accept_confirm).to eq "本当に削除して良いですか？"
+        expect(page).to have_content '管理者ユーザーを0人することはできません'
+      end
+    end
   end
 end
