@@ -1,9 +1,9 @@
-<%= form_with(model:@task, url:choose_new_or_edit, local:true, class:"form-group") do |form| %>
-  <% if @task.errors.any? %>
+<%= form_with(model:task, url:choose_new_or_edit, local:true, class:"form-group") do |form| %>
+  <% if task.errors.any? %>
     <div class="error_explanation">
-      <h3><%= @task.errors.count %><%= t('view.there_are_errors') %></h3>
+      <h3><%= task.errors.count %><%= t('view.there_are_errors') %></h3>
       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
+      <% task.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
       </ul>
@@ -42,7 +42,7 @@
   <div class="form-group row">
     <div class="col-sm-2"></div>
     <div class="col-md-5">
-      <%= form.submit "作成", class:"btn btn-primary" %>
+      <%= form.submit nil, class:"btn btn-primary" %>
     </div>
   </div>
 

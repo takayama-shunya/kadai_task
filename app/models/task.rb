@@ -6,6 +6,9 @@ class Task < ApplicationRecord
   validates :title, length: { maximum:50 }
   validates :content, length: { maximum:100 }
 
+  belongs_to :user
+  delegate :name, :email, :admin, to: :user, prefix: true
+
   enum priority: { 低: 0, 中: 1, 高: 2 }
 
   paginates_per 10
@@ -18,6 +21,10 @@ class Task < ApplicationRecord
   end
   scope :title_like, -> (title) { where("title LIKE ?", "%#{title}%") if title.present? }
   scope :status_name, -> (status) { where(status: status) if status.present? }
+
+  def update_tasks_user
+    Task.all.each { |task| task.update(user: User.first) }
+  end
 
   private
   def expired_add_time

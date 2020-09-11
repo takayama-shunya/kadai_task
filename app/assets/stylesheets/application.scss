@@ -1,11 +1,16 @@
 /*
  */
  @import "bootstrap";
+ @import url(https://fonts.googleapis.com/css?family=Anton);
 
- body {
+body {
   font-family: sans-serif;
   width: 100%;
-  padding: 10px 10px;
+  padding: 70px 10px 10px 10px;
+}
+
+h3 {
+  font-family: 'Anton', sans-serif;
 }
 
 li {
@@ -125,5 +130,39 @@ td ul {
 }
 
 .index-link {
-  padding: 3rem 0 0 3rem;
+  padding: 3rem 0 0 1rem;
+}
+
+.login {
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.login .btn {
+  width: 10rem;
+}
+
+.collapse, .navbar-collapse {
+  text-align: right;
+}
+
+.alert .alert-success {
+  padding: 1rem;
+}
+
+nav a span {
+  padding: 0.5rem;
+}
+
+.admin-users-index {
+  padding: 1rem;
+}
+
+.user-id {
+  width: 10%;
+}
+
+.spece {
+  padding: 1rem;
 }

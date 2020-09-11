@@ -5,6 +5,7 @@
  > name:string<br>
  > email:string<br>
  > password_digest:string<br>
+ > admin:bloolean  
 
  ・task table
  > title:string<br>
@@ -30,7 +31,11 @@ herokuデプロイ手順<br>
  > git push heroku master
 
  ・データベース設定
- > heroku run rails db:migrate
+ > heroku run rails db:migrate  
+
+ ・taskとuser紐付け
+ > seedデータでユーザー作成
+ > rails runner Task.new.update_tasks_user  
 
  ジェムバージョン
  > bootsnap (>= 1.1.0)  

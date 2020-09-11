@@ -3,7 +3,6 @@ ja:
     models:
       task: タスク
       user: ユーザー
-      label: ラベル
     attributes:
       task:
         title: タイトル
@@ -12,3 +11,8 @@ ja:
         status: ステータス
         priority: 優先度
       user:
+        name: 名前
+        email: アドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        admin: 管理者権限

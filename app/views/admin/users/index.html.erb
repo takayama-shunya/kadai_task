@@ -1,0 +1,48 @@
+<h3>ユーザー一覧</h3>
+<div class="col-md-10">
+  <div class="admin-users-index">
+    <%= link_to 'ユーザー作成', new_admin_user_path, class:"btn btn-primary" %>
+  </div>
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="user-id">#</th>
+        <th scope="col">名前</th>
+        <th scope="col">アドレス</th>
+        <th scope="col">管理者権限</th>
+        <th scope="col">作成タスク数</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% n = 0 %>
+    <% @users.each do |user| %>
+    <% n += 1 %>
+      <tr>
+        <th class="user-id"><%= n %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.admin == true %>
+            あり
+          <% else %>
+            なし
+          <% end %>
+        </td>
+        <td><%= user.tasks.count %></td>
+        <td id="test-info"><%= link_to '詳細', admin_user_path(user.id), class:"btn btn-outline-info" %></td>
+        <td id="test-edit"><%= link_to '編集', edit_admin_user_path(user.id), class:"btn btn-outline-success" %></td>
+        <td id="test-destroy"><%= link_to '削除', admin_user_path(user.id), method: :delete,
+                data: { confirm: '本当に削除して良いですか？' }, class:"btn btn-outline-danger" %></td>
+      <tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="mb-3">
+    <p>（総タスク数は<%= @tasks_count %>件です）</p>
+    <%= paginate @users %>
+    <%= page_entries_info @users %>
+  </div>
+</div>
