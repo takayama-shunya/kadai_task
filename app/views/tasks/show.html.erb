@@ -1,23 +1,44 @@
-<h3><%= t('view.task_details') %></h3>
-<div class="task-show">
-  <div class="task-show">
-    <%= t('view.title') %><br><%= @task.title %>
-  </div>
-  <div class="task-show">
-    <%= t('view.content')  %><br><%= @task.title %>
-  </div>
-  <div class="task-show">
-    <%= t('view.end_time') %><br><%= @task.expired %>
-  </div>
-  <div class="task-show">
-    <%= t('view.status') %><br><%= @task.status %>
-  </div>
-  <div class="task-show">
-    <%= t('view.priority') %><br><%= @task.priority %>
-  </div>
-  <div class="task-show index-link">
-    <%= button_to tasks_path, method: :get, class:"btn btn-dark" do %>
-      <span><%= t('view.task_list') %></span>
-    <% end %>
-  </div>
+<div class="spece">
+  <h3><%= t('view.task_details') %></h3>
 </div>
+<div class="col-md-6">
+  <table class="table table.hover">
+    <tbody>
+      <tr>
+        <th scope="col"><%= t('view.title') %></th>
+        <td scope="col"><%= @task.title %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.content') %></th>
+        <td scope="col"><%= @task.content %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.end_time') %></th>
+        <td scope="col"><%= @task.expired %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.status') %></th>
+        <td scope="col"><%= @task.status %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.priority') %></th>
+        <td scope="col"><%= @task.priority %></td>
+      </tr>
+      <tr>
+        <th scope="col">【ラベル】</th>
+        <td scope="col">
+          <% @task.labels.each do |label| %>
+            <%= label.name %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="task-show index-link">
+  <%= button_to tasks_path, method: :get, class:"btn btn-dark" do %>
+    <span><%= t('view.task_list') %></span>
+  <% end %>
+</div>
+
+

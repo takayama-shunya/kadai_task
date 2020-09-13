@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired, :status, :priority, label_ids: [])
   end
 
   def set_clumn_name

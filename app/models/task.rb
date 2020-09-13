@@ -9,6 +9,9 @@ class Task < ApplicationRecord
   belongs_to :user
   delegate :name, :email, :admin, to: :user, prefix: true
 
+  has_many :label_tags, dependent: :destroy 
+  has_many :labels, through: :label_tags
+
   enum priority: { 低: 0, 中: 1, 高: 2 }
 
   paginates_per 10
