@@ -45,6 +45,10 @@ class TasksController < ApplicationController
   end
 
   def update
+    unless params[:task][:label_ids]
+      @task.labels.delete_all
+    end
+
     if @task.update(task_params)
       redirect_to tasks_path, notice: "タスク編集しました！"
     else
@@ -72,7 +76,7 @@ class TasksController < ApplicationController
   end
 
   def search_params
-    params.fetch(:search, {}).permit(:title, :status)
+    params.fetch(:search, {}).permit(:title, :status, :label_id)
   end
 
 

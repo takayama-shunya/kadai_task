@@ -32,10 +32,7 @@
       <tr>
         <th scope="col">【ラベル】</th>
         <td scope="col">
-          <% Label.all.each do |label| %>
-          <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-            <%= label.name %>
-          <% end %>
+          <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
         </td>
       </tr>
     </tbody>

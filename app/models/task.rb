@@ -21,9 +21,11 @@ class Task < ApplicationRecord
 
     title_like(search_params[:title])
       .status_name(search_params[:status])
+      .label_id(search_params[:label_id])
   end
-  scope :title_like, -> (title) { where("title LIKE ?", "%#{title}%") if title.present? }
+  scope :title_like, -> (title) { where("tasks.title LIKE ?", "%#{title}%") if title.present? }
   scope :status_name, -> (status) { where(status: status) if status.present? }
+  scope :label_id, -> (label_id) { joins(:labels).where(labels: { id: label_id }) if label_id.present? }
 
   def update_tasks_user
     Task.all.each { |task| task.update(user: User.first) }
