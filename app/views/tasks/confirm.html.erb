@@ -32,8 +32,13 @@
       <tr>
         <th scope="col">【ラベル】</th>
         <td scope="col">
-          <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+          <%= form.collection_check_boxes(:label_ids,  Label.where(user_id: nil), :id, :name) %>
         </td>
+        <% unless current_user.tasks.blank?%>
+        <td scope="col">
+          <%= form.collection_check_boxes(:label_ids,  Label.where(user_id: current_user.id), :id, :name) %>
+        </td>
+        <% end %>
       </tr>
     </tbody>
   </table>

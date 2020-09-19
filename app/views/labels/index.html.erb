@@ -1,0 +1,29 @@
+<h3>ラベル一覧</h3>
+<div class="col-md-6">
+  <table class="table table.hover">
+    <tbody>
+      <% @labels.each do |label| %>
+      <tr>
+        <th scope="col">name</th>
+        <td scope="col"><%= label.name %></td>
+        <td id="test-destroy"><%= link_to '削除', label_path(label.id), method: :delete,
+            data: { confirm: '本当に削除して良いですか？' }, class:"btn btn-outline-danger" %></td>
+      <% end %>
+      </tr>
+      <% if current_user_admin? %>
+        <% @labels_default.each do |label| %>
+        <tr>
+          <th scope="col">name</th>
+          <td scope="col"><%= label.name %></td>
+          <td id="test-destroy"><%= link_to '削除', label_path(label.id), method: :delete,
+              data: { confirm: '本当に削除して良いですか？' }, class:"btn btn-outline-danger" %></td>
+        <% end %>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="user-show">
+  <%= link_to 'ラベル作成', new_label_path, class:"btn btn-success" %>
+  <%= link_to 'タスク一覧', tasks_path, class:"btn btn-dark" %>
+</div>

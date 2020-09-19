@@ -17,6 +17,7 @@ class User < ApplicationRecord
            :expired,
            :status, 
            :priority, to: :user, prefix: true
+  has_many :labels, dependent: :destroy
   
   private
 

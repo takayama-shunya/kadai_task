@@ -28,8 +28,11 @@ RSpec.describe Task, type: :model do
     end
   end
   describe '検索機能' do
-    let!(:task) { FactoryBot.create(:task, title: 'task', user: admin_user) }
-    let!(:second_task) { FactoryBot.create(:second_task, title: "sample", user: admin_user) }
+    let!(:label) { FactoryBot.create(:label, name: 'label_1') }
+    let!(:second_label) { FactoryBot.create(:second_label, name: 'label_2') }
+    let!(:third_label) { FactoryBot.create(:third_label, name: 'label_3') }
+    let!(:task) { FactoryBot.create(:task, title: 'task', user: admin_user, labels: [label, second_label, third_label]) }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "sample", user: admin_user, labels: [third_label]) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         expect(Task.title_like('task')).to include(task)
