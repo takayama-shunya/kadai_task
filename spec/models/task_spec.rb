@@ -31,8 +31,10 @@ RSpec.describe Task, type: :model do
     let!(:label) { FactoryBot.create(:label, name: 'label_1') }
     let!(:second_label) { FactoryBot.create(:second_label, name: 'label_2') }
     let!(:third_label) { FactoryBot.create(:third_label, name: 'label_3') }
-    let!(:task) { FactoryBot.create(:task, title: 'task', user: admin_user, labels: [label, second_label, third_label]) }
-    let!(:second_task) { FactoryBot.create(:second_task, title: "sample", user: admin_user, labels: [third_label]) }
+    let!(:task) { FactoryBot.create(:task, title: 'task', user: admin_user,
+                                    label_ids: [label.id, third_label.id]) }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "sample", user: admin_user,
+                                            label_ids: [second_label.id]) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         expect(Task.title_like('task')).to include(task)
@@ -47,11 +49,18 @@ RSpec.describe Task, type: :model do
         expect(Task.status_name('着手中').count).to eq 1
       end
     end
-    context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
-      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
-        expect(Task.title_like('task').status_name('未着手')).to include(task)
-        expect(Task.title_like('task').status_name('未着手')).not_to include(second_task)
-        expect(Task.title_like('task').status_name('未着手').count).to eq 1
+    context 'scopeメソッドでラベル検索をした場合' do
+      it "検索ラベルを含むタスクが絞り込まれる" do
+        expect(Task.label_id(second_label.id)).to include(second_task)
+        expect(Task.label_id(second_label.id)).not_to include(task)
+        expect(Task.label_id(second_label.id).count).to eq 1
+      end
+    end
+    context 'scopeメソッドでタイトルのあいまい検索、ステータス検索、ラベル検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスとラベルに完全一致するタスク絞り込まれる" do
+        expect(Task.title_like('task').status_name('未着手').label_id(label.id)).to include(task)
+        expect(Task.title_like('task').status_name('未着手').label_id(label.id)).not_to include(second_task)
+        expect(Task.title_like('task').status_name('未着手').label_id(label.id).count).to eq 1
       end
     end
   end

@@ -27,11 +27,8 @@ class Task < ApplicationRecord
   scope :status_name, -> (status) { where(status: status) if status.present? }
   scope :label_id, -> (label_id) { joins(:labels).where(labels: { id: label_id }) if label_id.present? }
 
-  def update_tasks_user
-    Task.all.each { |task| task.update(user: User.first) }
-  end
-
   private
+
   def expired_add_time
     now = Time.current
     self.expired = now.next_month if expired.blank?

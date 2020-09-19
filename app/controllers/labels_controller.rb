@@ -16,7 +16,7 @@ class LabelsController < ApplicationController
 
   def index
     @labels = Label.where(user_id: current_user.id)
-    @labels_default = Label.where(user_id: nil)  if current_user.admin == true
+    @labels_default = Label.where(user_id: nil) if current_user.admin == true
   end
 
   def destroy

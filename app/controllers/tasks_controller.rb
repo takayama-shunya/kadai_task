@@ -4,16 +4,8 @@ class TasksController < ApplicationController
 
   def index
     @search_params = search_params
-    if params[:search]
-      @tasks = current_user.tasks.search(@search_params).page(params[:page])
-      redirect_to tasks_path, notice: "検索タスクはありません" if @tasks.blank?
-    elsif params[:sort_desc]
-      @tasks = current_user.tasks.order("#{set_clumn_name}": :desc).page(params[:page])
-    elsif params[:sort_asc]
-      @tasks = current_user.tasks.order("#{set_clumn_name}": :asc).page(params[:page])
-    else
-      @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
-    end
+    @tasks = Task.includes(user: :labels).where(user_id: current_user.id)
+    @tasks = sorting_params.page(params[:page])
   end
 
   def show
@@ -79,5 +71,16 @@ class TasksController < ApplicationController
     params.fetch(:search, {}).permit(:title, :status, :label_id)
   end
 
+  def sorting_params
+    if params[:search]
+      @tasks.search(@search_params)
+    elsif params[:sort_desc]
+      @tasks.order("#{set_clumn_name}": :desc)
+    elsif params[:sort_asc]
+      @tasks.order("#{set_clumn_name}": :asc)
+    else
+      @tasks.order(created_at: :desc)
+    end
+  end
 
 end
