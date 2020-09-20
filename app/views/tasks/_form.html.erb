@@ -24,26 +24,41 @@
   <div class="form-group row">
     <%= form.label :expired, class:"col-sm-2 col-form-label" %>
     <div class="col-md-5">
-      <%= form.date_field :expired, class:"form-control" %>
+      <%= form.date_field :expired, selected: task.expired, class:"form-control" %>
     </div>
   </div>
   <div class="form-group row">
     <%= form.label :status, class:"col-sm-2 col-form-label" %>
     <div class="col-md-5">
-      <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], class:"form-control form-control-lg" %>
+      <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]],
+                               selected: task.status, class:"form-control form-control-lg" %>
     </div>
   </div>
   <div class="form-group row">
     <%= form.label :priority, class:"col-sm-2 col-form-label" %>
     <div class="col-md-5">
-      <%= form.select :priority, Task.priorities.keys.map {|k| [k, k]}, class:"form-control form-control-lg" %>
+      <%= form.select :priority, Task.priorities.keys.map {|k| [k, k]},
+                                 selected: task.priority, class:"form-control form-control-lg" %>
     </div>
   </div>
+  <div class="form-group row">
+    <%= form.label :label_ids, 'ラベル', class:"col-sm-2 col-form-label" %>
+    <div class="col-md-5">
+      <%= form.collection_check_boxes(:label_ids, Label.where(user_id: nil), :id, :name) %>
+    </div>
+  </div>
+  <% if current_user.labels.present? %>
+    <div class="form-group row" id="label-test">
+      <%= form.label :label_ids, 'プライベートラベル', class:"col-sm-2 col-form-label" %>
+      <div class="col-md-5">
+        <%= form.collection_check_boxes(:label_ids, Label.where(user_id: current_user.id), :id, :name) %>
+      </div>
+    </div>
+  <% end %>
   <div class="form-group row">
     <div class="col-sm-2"></div>
     <div class="col-md-5">
       <%= form.submit nil, class:"btn btn-primary" %>
     </div>
   </div>
-
 <% end %>

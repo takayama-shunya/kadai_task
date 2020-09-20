@@ -5,21 +5,44 @@
   <%= form.hidden_field :expired %>
   <%= form.hidden_field :status %>
   <%= form.hidden_field :priority %>
-  <div class="task-show">
-    <%= t('view.title') %><br><%= @task.title %>
-  </div>
-  <div class="task-show">
-    <%= t('view.content') %><br><%= @task.content %>
-  </div>
-  <div class="task-show">
-    <%= t('view.end_time') %><br><%= @task.expired %>
-  </div>
-  <div class="task-show">
-    <%= t('view.status') %><br><%= @task.status %>
-  </div>
-  <div class="task-show">
-    <%= t('view.priority') %><br><%= @task.priority %>
-  </div>
+  <%= form.hidden_field :lable_ids %>
+<div class="col-md-6">
+  <table class="table table.hover">
+    <tbody>
+      <tr>
+        <th scope="col"><%= t('view.title') %></th>
+        <td scope="col"><%= @task.title %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.content') %></th>
+        <td scope="col"><%= @task.content %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.end_time') %></th>
+        <td scope="col"><%= @task.expired %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.status') %></th>
+        <td scope="col"><%= @task.status %></td>
+      </tr>
+      <tr>
+        <th scope="col"><%= t('view.priority') %></th>
+        <td scope="col"><%= @task.priority %></td>
+      </tr>
+      <tr>
+        <th scope="col">【ラベル】</th>
+        <td scope="col">
+          <%= form.collection_check_boxes(:label_ids,  Label.where(user_id: nil), :id, :name) %>
+        </td>
+        <% unless current_user.tasks.blank?%>
+        <td scope="col">
+          <%= form.collection_check_boxes(:label_ids,  Label.where(user_id: current_user.id), :id, :name) %>
+        </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
   <div class="task_show">
     <ul>
       <li class="confirm-submit"><%= form.submit nil, class:"btn btn-primary" %></li>

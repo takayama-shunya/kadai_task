@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :labels, only: %i[ new create index destroy ]
+
 end

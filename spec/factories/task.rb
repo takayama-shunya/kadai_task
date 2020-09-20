@@ -6,6 +6,7 @@ FactoryBot.define do
     status { "未着手" }
     priority { 0 }
     association :user, factory: :admin_user
+    association :labels
   end
   factory :second_task, class: Task do
     title { 'デフォルトタイトル2'}
@@ -14,5 +15,6 @@ FactoryBot.define do
     status { "着手中" }
     priority { 2 }
     association :user, factory: :admin_user
+    association :labels
   end
 end
